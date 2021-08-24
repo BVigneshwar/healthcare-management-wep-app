@@ -41,7 +41,7 @@ function formatDate(format_date){
 		month = "0" + month;
 	}
 	var year = format_date.getFullYear();
-	return date + "-" + month + "-" + year;
+	return year + "-" + month + "-" + date;
 }
 
 export {postAjax, getAjax, formatDate};
