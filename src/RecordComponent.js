@@ -48,10 +48,12 @@ class RecordComponent extends React.Component{
 				)
 			});
 		}
-		return (<>
-			<h3>Record</h3>
-			{ records }
-		</>);
+		return (<div className="record-container homepage-container white-bg">
+			<div className="record-header homepage-header">
+				<h3>Record</h3>
+			</div>
+			<div className="homepage-list record-list">{ records }</div>
+		</div>);
 	}
 }
 

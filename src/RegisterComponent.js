@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {TextComponent, NumericComponent, PasswordComponent, DatePickerComponent, RadioButtonComponent, ButtonComponent, SelectComponent, ErrorComponent} from'./InputComponents';
+import {TextComponent, NumericComponent, PasswordComponent, DatePickerComponent, TextAreaComponent, RadioButtonComponent, ButtonComponent, SelectComponent, ErrorComponent} from'./InputComponents';
 import {postAjax, formatDate} from './Utilities';
 
 class RegisterComponent extends React.Component{
@@ -11,11 +11,11 @@ class RegisterComponent extends React.Component{
 			phone : "",
 			password : "",
 			confirm_password : "",
-			role : "user",
 			dob : formatDate(new Date()),
 			gender : "",
 			blood_group : undefined,
-			error : undefined
+			error : undefined,
+			address : ""
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
@@ -67,6 +67,11 @@ class RegisterComponent extends React.Component{
 			this.handleError(["blood_group"], "Select blood group");
 			return false;
 		}
+		if(!this.state.address || this.state.address.length === 0){
+			this.handleError(["address"], "Address should not be empty");
+			return false;
+		}
+		return true;
 	}
 	
 	handleError(fields, msg){
@@ -79,7 +84,7 @@ class RegisterComponent extends React.Component{
 				return;
 			}
 			var obj = {date_of_joining : formatDate(new Date())};
-			var {state, error} = this.state;
+			var {error, ...state} = this.state;
 			Object.assign(obj, state);
 			postAjax("/api/register", obj, function(response){
 				window.location.href = "http://localhost:3000/";
@@ -101,9 +106,10 @@ class RegisterComponent extends React.Component{
 			{name : "O-", value : "O-"},
 			{name : "AB+", value : "AB+"},
 			{name : "AB-", value : "AB-"}
-		]
+		];
 		return (
-			<div>
+			<div className="register-container popup-container white-bg absolute-center">
+				<h3 className="center-align">REGISTER</h3>
 				<ErrorComponent error={this.state.error}/>
 				<TextComponent id="name" label="Name" name="name" value={this.state.name} handleChange={this.handleChange} />
 				<NumericComponent id="phone-number" label="Phone" name="phone" value={this.state.phone} handleChange={this.handleChange} />
@@ -111,8 +117,9 @@ class RegisterComponent extends React.Component{
 				<PasswordComponent id="confirm-password" label="Re-Password" name="confirm_password" value={this.state.confirm_password} handleChange={this.handleChange} />
 				<DatePickerComponent id="dob" label="Date of Birth" name="dob" value={this.state.dob} handleChange={this.handleChange} />
 				<RadioButtonComponent label="Gender" name="gender" data={gender_data} value={this.state.gender} handleChange={this.handleChange} />
+				<TextAreaComponent id="address" label="Address" name="address" value={this.state.address} handleChange={this.handleChange} />
 				<SelectComponent id="blood_group" name="blood_group" label="Blood Group" placeholder="--Select Blood Group--" options={blood_options} value={this.state.blood_group} handleChange={this.handleChange} />
-				<ButtonComponent label="Register" name="register" handleClick={this.handleClick} />
+				<ButtonComponent label="Register" name="register" className="active-button" handleClick={this.handleClick} />
 			</div>
 		);
 	}

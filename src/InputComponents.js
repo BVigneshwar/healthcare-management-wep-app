@@ -5,10 +5,9 @@ import SelectSearch, {fuzzySearch} from 'react-select-search';
 class TextComponent extends React.PureComponent{
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "input-text-container"}>
 				<label htmlFor={this.props.id}>{this.props.label}</label>
 				<input id={this.props.id} className={this.props.className} type="text" name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
-				<div>{this.props.error}</div>
 			</div>
 		);
 	}
@@ -17,10 +16,9 @@ class TextComponent extends React.PureComponent{
 class NumericComponent extends React.PureComponent{
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "input-number-container"}>
 				<label htmlFor={this.props.id}>{this.props.label}</label>
 				<input id={this.props.id} className={this.props.className} type="number" name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
-				<div>{this.props.error}</div>
 			</div>
 		);
 	}
@@ -29,10 +27,20 @@ class NumericComponent extends React.PureComponent{
 class PasswordComponent extends React.PureComponent{
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "input-password-container"}>
 				<label htmlFor={this.props.id}>{this.props.label}</label>
 				<input id={this.props.id} className={this.props.className} type="password" name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
-				<div>{this.props.error}</div>
+			</div>
+		);
+	}
+}
+
+class TextAreaComponent extends React.PureComponent{
+	render(){
+		return (
+			<div className={this.props.containerClass ? this.props.containerClass : "input-textarea-container"}>
+				<label htmlFor={this.props.id}>{this.props.label}</label>
+				<textarea id={this.props.id} className={this.props.className} name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
 			</div>
 		);
 	}
@@ -41,10 +49,9 @@ class PasswordComponent extends React.PureComponent{
 class DatePickerComponent extends React.PureComponent{
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "input-date-container"}>
 				<label htmlFor={this.props.id}>{this.props.label}</label>
 				<input id={this.props.id} className={this.props.className} type="date" name={this.props.name} value={this.props.value} onChange={this.props.handleChange} />
-				<div>{this.props.error}</div>
 			</div>
 		);
 	}
@@ -56,12 +63,12 @@ class RadioButtonComponent extends React.PureComponent{
 			return (
 				<React.Fragment key={index}>
 					<input type="radio" id={data.id} name={this.props.name} value={data.value} checked={data.value === this.props.value} onChange={this.props.handleChange}/>
-					<label htmlFor={data.id}>{data.label}</label>
+					<label htmlFor={data.id} className="radio-label">{data.label}</label>
 				</React.Fragment>
 			);
 		});
 		return(
-			<div>
+			<div className={this.props.containerClass ? this.props.containerClass : "input-radio-container"}>
 				<label>{this.props.label}</label>
 				{radioElem}
 				<div>{this.props.error}</div>
@@ -73,7 +80,7 @@ class RadioButtonComponent extends React.PureComponent{
 class ButtonComponent extends React.PureComponent{
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "button-container"}>
 				<button id={this.props.id} className={this.props.className} name={this.props.name} onClick={this.props.handleClick}>{this.props.label}</button>
 			</div>
 		);
@@ -97,9 +104,9 @@ class SelectComponent extends React.Component{
 	
 	render(){
 		return (
-			<div className={this.props.containerClass}>
+			<div className={this.props.containerClass ? this.props.containerClass : "select-container"}>
 				<label htmlFor={this.props.id}>{this.props.label}</label>
-				<SelectSearch id={this.props.id} className={this.props.className} name={this.props.name} placeholder={this.props.placeholder} options={this.props.options} search filterOptions={fuzzySearch} value={this.props.value} disabled={this.props.disabled} onChange={this.handleChange}/>
+				<SelectSearch id={this.props.id} className={this.props.className} name={this.props.name} placeholder={this.props.placeholder} options={this.props.options} search filterOptions={fuzzySearch} value={this.props.value} disabled={this.props.disabled} onChange={this.handleChange} onBlur={function(){ debugger; }}/>
 			</div>
 		)
 	}
@@ -108,7 +115,7 @@ class SelectComponent extends React.Component{
 class ErrorComponent extends React.Component{
 	render(){
 		if(this.props.error && this.props.error.msg){
-			return <div>{this.props.error.msg}</div>;
+			return <div className="error-container center-align">{this.props.error.msg}</div>;
 		}else{
 			return null;
 		}
@@ -121,6 +128,7 @@ class PopupComponent extends React.Component{
 	constructor(props){
 		super(props);
 		this.el = document.createElement('div');
+		this.el.classList.add('popup-wrapper');
 	}
 	
 	componentDidMount(){
@@ -132,9 +140,12 @@ class PopupComponent extends React.Component{
 	}
 	
 	render(){
-		var popup = <div>{this.props.children}</div>;
+		var popup = (<>
+				<div className="popup-mask"></div>
+				<div className="popup-container absolute-center white-bg">{this.props.children}</div>
+			</>);
 		return ReactDOM.createPortal( popup, this.el);
 	}
 }
 
-export {TextComponent, NumericComponent, PasswordComponent, DatePickerComponent, RadioButtonComponent, ButtonComponent, SelectComponent, ErrorComponent, PopupComponent};
+export {TextComponent, NumericComponent, PasswordComponent, TextAreaComponent, DatePickerComponent, RadioButtonComponent, ButtonComponent, SelectComponent, ErrorComponent, PopupComponent};

@@ -2,3 +2,242 @@
 	padding: 0px;
 	margin: 0px;
 }
+a{
+	color: #000;
+    text-decoration: none;
+}
+body{
+	width: 100vw;
+    height: 100vh;
+    background: #efefef;
+	color: #000;
+}
+button{
+	border: none;
+    outline: none;
+	cursor: pointer;
+}
+#root{
+	position: relative;
+	width: 100vw;
+    height: 100vh;
+	overflow: hidden;
+}
+label{
+	display: inline-block;
+	vertical-align: middle;
+    width: 150px;
+	font-size: 16px;
+}
+.inline-middle{
+	display: inline-block;
+	vertical-align: middle;
+}
+.width-50{
+	display: inline-block;
+	width: 50%;
+}
+.right-align{
+	text-align: right;
+}
+.center-align{
+	text-align: center;
+}
+.input-number-container, .input-text-container, .input-password-container, .input-textarea-container, .input-date-container, .input-radio-container, .select-container{
+	margin: 10px;
+}
+.button-container{
+	margin: 20px;
+	text-align: center;
+}
+.active-button{
+	padding: 10px 20px;
+    border: none;
+    outline: none;
+    background: #4588F0;
+    color: #FFFFFF;
+}
+.inactive-button{
+	padding: 10px 20px;
+    border: 1px solid #DADADA;
+    outline: none;
+    background-color: #F4F4F4;
+}
+.button-50-container{
+	display: inline-block;
+    width: calc(50% - 40px);
+    box-sizing: border-box;
+	margin: 20px;
+}
+.input-number-container input, .input-text-container input, .input-password-container input, .input-textarea-container textarea, .input-date-container input{
+	width: 200px;
+    padding: 5px;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+input[type="radio"]{
+	vertical-align: middle;
+	margin-right: 3px;
+}
+.radio-label{
+	width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.input-textarea-container label{
+	vertical-align: top;
+}
+.input-textarea-container textarea{
+	resize: vertical; 
+}
+.select-container .select-search{
+	position: relative;
+	display: inline-block;
+}
+.select-container .select-search__select{
+	position: absolute;
+    top: 30px;
+}
+.select-container .select-search__row{
+	list-style: none;
+	width: 200px;
+    padding: 5px;
+	background: #FFFFFF;
+    border-bottom: 1px solid #ccc;
+}
+.select-container .select-search__row button{
+	display: block;
+	background: transparent;
+    border: none;
+    outline: none;
+}
+.select-container input{
+	width: 200px;
+    padding: 5px;
+}
+.white-bg{
+	background-color: #FFFFFF;
+}
+.absolute-center{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#popup-container{
+	position: relative;
+}
+.popup-wrapper{
+	position: absolute;
+	height: 100vh;
+    width: 100vw;
+	bottom: 0px;
+}
+.popup-mask{
+	position: absolute;
+	top: 0;
+    height: 100vh;
+    width: 100vw;
+	background: #000000;
+    opacity: 0.6;
+}
+.popup-container{
+	padding: 20px;
+	max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+.error-container{
+	color: red;
+	margin: 5px;
+}
+.user-profile-container{
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+.user-details-container{
+	display: inline-block;
+    width: calc(100% - 200px);
+    vertical-align: middle;
+}
+.profile-blood-group{
+	font-size: 50px;
+    display: inline-block;
+	vertical-align: middle;
+    width: 200px;
+    text-align: right;
+    color: #4588F0;
+}
+.homepage-tabs-container{
+	border-bottom: 1px solid #ccc;
+}
+.separator{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.homepage-tabs-container a{
+	display: inline-block;
+    padding: 10px;
+    margin: 0px 10px;
+}
+.homepage-tabs-container a.selected{
+	border-bottom: 3px solid #4588F0;
+    padding-bottom: 7px;
+}
+.homepage-container{
+	padding: 10px;
+}
+.homepage-header{
+	margin-bottom: 10px;
+}
+.homepage-header h3{
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: normal;
+    font-size: 20px;
+}
+.homepage-button-container{
+	display: inline-block;
+    vertical-align: middle;
+}
+.homepage-button{
+	background-color: #FFFFFF;
+	color: #4588F0;
+}
+.homepage-list{
+	height: calc(100vh - 170px);
+	overflow-y: auto;
+}
+.homepage-entry-wrapper{
+	padding: 10px;
+    border: 1px solid #ccc;
+}
+.announcement-title, .announcement-description{
+	margin-bottom: 3px;
+}
+.homepage-label{
+	color: #777;
+}
+.announcement-created_by{
+	display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+}
+.announcement-date{
+	display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    text-align: right;
+}
+.appointment-doctor-container{
+	margin-bottom: 3px;
+}
+.appointment-symptoms{
+	margin-bottom: 3px;
+}

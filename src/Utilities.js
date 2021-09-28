@@ -4,6 +4,7 @@ function postAjax(url, data, on_success, on_error){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", host + url, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xhr.withCredentials = true;
 	xhr.send(JSON.stringify(data));
     xhr.onload = function(event){
         if(this.status == 200){
@@ -21,6 +22,7 @@ function postAjax(url, data, on_success, on_error){
 function getAjax(url, on_success){
     var xhr = new XMLHttpRequest();
     xhr.open("GET", host + url, true);
+	xhr.withCredentials = true;
     xhr.send();
     xhr.onload = function(event){
         if(this.getResponseHeader('Content-Type') == "application/json; charset=utf-8"){
